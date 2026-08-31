@@ -9,6 +9,7 @@
 - hanjia-ratatouille-tainan.jpg
 - fengmentang-xueguo-shanghai.jpg
 - fengmentang-golden-gream-shanghai.jpg
+- pawooby-umami-nuts-shanghai.jpg
 - fengmentang-brandy-alexander-shanghai.jpg
 - kkhomebar-freiheit-shanghai.jpg
 - kkhomebar-matcha-gin-tonic-shanghai.jpg
