@@ -9,6 +9,12 @@
 - hanjia-ratatouille-tainan.jpg
 - fengmentang-xueguo-shanghai.jpg
 - fengmentang-golden-gream-shanghai.jpg
+- oji-highball-laphroaig-shanghai.jpg
+- mingo-casino-shanghai.jpg
+- mingo-bamboo-shanghai.jpg
+- mingo-adonis-shanghai.jpg
+- avenuejoffre-gintonic-rokucha-shanghai.jpg
+- avenuejoffre-osmo-shanghai.jpg
 - zion-la-hoji-shanghai.jpg
 - zion-cuixiang-shanghai.jpg
 - xyz-honolulu-shanghai.jpg
@@ -16,7 +22,7 @@
 - ojicw-bloody-mary-shanghai.jpg
 - ojicw-rose-cosmopolitan-shanghai.jpg
 - southerncross-eldiablo-shanghai.jpg
-- southerncross-bloodandmary-shanghai.jpg
+- southerncross-bloodandsand-shanghai.jpg
 - rootdown-mr-black-shanghai.jpg
 - ojicw-20th-century-shanghai.jpg
 - ojicw-hoopla-shanghai.jpg
