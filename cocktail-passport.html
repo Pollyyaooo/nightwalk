@@ -311,7 +311,7 @@ function renderTopBars(){
 renderTopBars();
 function renderGallery(list){
   const galleryEl=document.querySelector('#galleryList'),emptyEl=document.querySelector('#searchEmpty');
-  galleryEl.innerHTML=list.map(d=>`<article class="card" tabindex="0"><div class="photo ${d.size}" style="--photo:${d.color}"><img src="${esc(d.photo||'')}" alt="${esc(d.name)}" onerror="this.remove()"></div><div class="card-text"><div class="city">${esc(d.city)} · ${esc(d.date)}</div><h2>${esc(d.name)}</h2><div class="micro">${esc(d.bar)}</div>${d.type?`<div class="drink-type">${esc(d.type)}</div>`:''}<p>${esc(d.taste)}</p></div></article>`).join('');
+  galleryEl.innerHTML=list.map(d=>`<article class="card" tabindex="0"><div class="photo ${d.size}" style="--photo:${d.color}"><img src="${esc(d.photo||'')}" alt="${esc(d.name)}" loading="lazy" decoding="async" onerror="this.remove()"></div><div class="card-text"><div class="city">${esc(d.city)} · ${esc(d.date)}</div><h2>${esc(d.name)}</h2><div class="micro">${esc(d.bar)}</div>${d.type?`<div class="drink-type">${esc(d.type)}</div>`:''}<p>${esc(d.taste)}</p></div></article>`).join('');
   emptyEl.hidden=list.length>0;
   galleryEl.hidden=list.length===0;
 }
