@@ -29,6 +29,23 @@
 <script>
 // 在这里增添你的每一杯酒：坐标 x/y 为地图上的百分比位置。
 const drinks=[
+ {bar:'Oji',name:'薄荷清口糖',city:'上海，中国',date:'2026.09.10',year:2026,taste:'酒如其名',x:70.3,y:43.4,color:'#6f9a5a',size:'',photo:'photos/oji-mint-palate-cleanser-shanghai.jpg'},
+ {bar:'Oji',name:'Matcha Old Fashion',city:'上海，中国',date:'2026.09.10',year:2026,taste:'第一次喝是黑糖抹茶的感觉，这一次却发现酒味甚浓',x:70.6,y:43.2,color:'#8a9a5a',size:'',photo:'photos/oji-matcha-old-fashion-shanghai.jpg'},
+ {bar:'Oji',name:'Southside',city:'上海，中国',date:'2026.09.10',year:2026,taste:'好喝但不如环游世界',x:70.9,y:43,color:'#6f9a5a',size:'',photo:'photos/oji-southside-shanghai.jpg'},
+ {bar:'Yoka Balance',name:'Grasshopper',city:'上海，中国',date:'2026.09.10',year:2026,taste:'遇事不决绿蚱蜢',x:71,y:44.2,color:'#7a9a5a',size:'',photo:'photos/yoka-grasshopper-shanghai.jpg'},
+ {bar:'Yoka Balance',name:'French 125',city:'上海，中国',date:'2026.09.10',year:2026,taste:'我果真还是讨厌白兰地',x:71.3,y:44,color:'#8a5a32',size:'',photo:'photos/yoka-french125-shanghai.jpg'},
+ {bar:'丰门堂',name:'Punch Romaine',city:'上海，中国',date:'2026.09.10',year:2026,taste:'蛋腥味过重好奇怪',x:70,y:44.9,color:'#d9c9a3',size:'',photo:'photos/fengmentang-punch-romaine-shanghai.jpg'},
+ {bar:'Avenue Joffre Bar',name:'亚历山大榛子版',city:'上海，中国',date:'2026.09.09',year:2026,taste:'腻腻榛子巧克力奶',x:69.7,y:43.7,color:'#8a6a4a',size:'',photo:'photos/avenuejoffre-alexander-hazelnut-shanghai.jpg'},
+ {bar:'Avenue Joffre Bar',name:'某Tea',city:'上海，中国',date:'2026.09.09',year:2026,taste:'腻腻抹茶奶',x:69.9,y:43.5,color:'#8a9a5a',size:'',photo:'photos/avenuejoffre-sometea-shanghai.jpg'},
+ {bar:'XYZ',name:'蒙特内罗酸',city:'上海，中国',date:'2026.09.09',year:2026,taste:'鲜榨橙汁惊为天人',x:70.4,y:45,color:'#e0a052',size:'',photo:'photos/xyz-montenegro-sour-shanghai.jpg'},
+ {bar:'Rootdown',name:'Around the World',city:'上海，中国',date:'2026.09.09',year:2026,taste:'依旧美味',x:69.1,y:45.3,color:'#6f9a5a',size:'',photo:'photos/rootdown-around-the-world-shanghai.jpg'},
+ {bar:'looper by ounce',name:'水星号',city:'上海，中国',date:'2026.09.09',year:2026,taste:'难喝花香梨子汁',x:69.6,y:44.7,color:'#d9c9a3',size:'',photo:'photos/looper-mercury-shanghai.jpg'},
+ {bar:'encounter',name:'茶',city:'上海，中国',date:'2026.09.09',year:2026,taste:'顶级奶茶',x:70.2,y:44.3,color:'#a3854a',size:'',photo:'photos/encounter-tea-shanghai.jpg'},
+ {bar:'丰门堂',name:'会馆菲士',city:'上海，中国',date:'2026.09.08',year:2026,taste:'涩牙',x:70.1,y:44.6,color:'#8a6a4a',size:'',photo:'photos/fengmentang-huiguan-fizz-shanghai.jpg'},
+ {bar:'Avenue Joffre Bar',name:'Ciena',city:'上海，中国',date:'2026.09.08',year:2026,taste:'依旧讨厌蓝橙',x:69.4,y:44.4,color:'#4a6a9a',size:'',photo:'photos/avenuejoffre-ciena-shanghai.jpg'},
+ {bar:'Avenue Joffre Bar',name:'Naked and Famous',city:'上海，中国',date:'2026.09.08',year:2026,taste:'不给我用查特黄很生气',x:69.6,y:44.2,color:'#c9c23e',size:'',photo:'photos/avenuejoffre-nakedandfamous-shanghai.jpg'},
+ {bar:'Avenue Joffre Bar',name:'** Blossom',city:'上海，中国',date:'2026.09.08',year:2026,taste:'酸和奶就不能融为一体',x:69.8,y:44,color:'#e0a3b8',size:'',photo:'photos/avenuejoffre-blossom-shanghai.jpg'},
+ {bar:'Avenue Joffre Bar',name:'Last Dance',city:'上海，中国',date:'2026.09.08',year:2026,taste:'喝不出它和grasshopper的区别谢谢',x:70,y:43.8,color:'#6f9a5a',size:'',photo:'photos/avenuejoffre-lastdance-shanghai.jpg'},
  {bar:'Oji',name:'Highball (Laphroaig Select)',city:'上海，中国',date:'2026.09.07',year:2026,taste:'烟熏威士忌究竟还是太古怪了',x:70.9,y:43.6,color:'#5a3f2e',size:'',photo:'photos/oji-highball-laphroaig-shanghai.jpg'},
  {bar:'mingo',name:'赌场',city:'上海，中国',date:'2026.09.07',year:2026,taste:'我真谢谢你路萨朵樱桃',x:69.9,y:44.9,color:'#a13c2e',size:'',photo:'photos/mingo-casino-shanghai.jpg'},
  {bar:'mingo',name:'Bamboo',city:'上海，中国',date:'2026.09.07',year:2026,taste:'干死了老头酒',x:69.6,y:45.1,color:'#8a6a4a',size:'',photo:'photos/mingo-bamboo-shanghai.jpg'},
