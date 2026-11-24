@@ -4,11 +4,22 @@
 支持 jpg、jpeg、png、webp。若文件不存在，网页会自动展示原有的抽象占位图。
 
 刚录入的一杯酒对应的照片文件名：
+- 2nw5-bananaraine-portland.jpg
+- whiskey-library-manhattan-portland.jpg
+- scotch-lodge-before-dusk-portland.jpg
+- nomonomo-anpan-vancouver.jpg
+- lala-sex-attention-vancouver.jpg
+- june-zendipity-vancouver.jpg
+- keefer-bar-keefer-125-vancouver.jpg
+- meo-unnamed-vancouver.jpg
+- death-and-co-uwajima-gimlet-seattle.jpg
 - hanjia-geisha-memoirs-tainan.jpg
 - hanjia-bugs-life-tainan.jpg
 - hanjia-ratatouille-tainan.jpg
 - fengmentang-xueguo-shanghai.jpg
 - fengmentang-golden-gream-shanghai.jpg
+- oji-siesta-shanghai.jpg
+- oji-maple-shanghai.jpg
 - oji-mint-palate-cleanser-shanghai.jpg
 - oji-matcha-old-fashion-shanghai.jpg
 - oji-southside-shanghai.jpg
