@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Night Walk · Cocktail Passport</title>
+  <title>Polly's Night Walk</title>
   <style>
     :root{--bg:#f3f0ea;--fg:#141414;--mut:rgba(20,20,20,.62);--soft:rgba(20,20,20,.8);--line:rgba(20,20,20,.14);--ph:#e4dfd5;--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei UI","Microsoft YaHei","Noto Sans SC","Helvetica Neue",Arial,sans-serif}
     *{box-sizing:border-box}
@@ -13,8 +13,7 @@
 
     .shell{max-width:1280px;margin:0 auto;padding:56px 56px 80px}
     .top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;border-bottom:2px solid var(--fg);padding-bottom:22px}
-    .eyebrow{font-size:12px;font-weight:500;color:var(--mut)}
-    .brand h1{margin:10px 0 0;font-size:clamp(40px,6vw,84px);line-height:1;font-weight:800;letter-spacing:-.05em}
+    .brand h1{margin:0;font-size:clamp(32px,5vw,68px);line-height:1;font-weight:800;letter-spacing:-.05em}
     .stats{display:flex;align-items:center;gap:30px}
     .stat{border-left:2px solid var(--fg);padding-left:12px}
     .stat b{display:block;font-size:30px;line-height:1;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
@@ -124,7 +123,7 @@
   </style>
 </head>
 <body><main class="shell">
-  <header class="top"><div class="brand"><div class="eyebrow">A personal drinking archive · since 2024</div><h1>Night Walk</h1></div><div class="stats"><div class="stat"><b id="drinkCount">00</b><span>COCKTAILS</span></div><div class="stat"><b id="cityCount">00</b><span>CITIES</span></div><div class="stat"><b>2024—</b><span>THE JOURNEY</span></div><button class="records-btn" id="viewBtn" aria-label="切换到时间线" title="切换到时间线"></button><button class="records-btn" id="recordsBtn" aria-label="按天查看" title="按天查看"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="10" width="3" height="10.5"/><rect x="10.5" y="4.5" width="3" height="16"/><rect x="17.5" y="13" width="3" height="7.5"/></svg></button></div></header>
+  <header class="top"><div class="brand"><h1>Polly's Night Walk</h1></div><div class="stats"><div class="stat"><b id="drinkCount">00</b><span>COCKTAILS</span></div><div class="stat"><b id="cityCount">00</b><span>CITIES</span></div><button class="records-btn" id="viewBtn" aria-label="切换到时间线" title="切换到时间线"></button><button class="records-btn" id="recordsBtn" aria-label="按天查看" title="按天查看"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="10" width="3" height="10.5"/><rect x="10.5" y="4.5" width="3" height="16"/><rect x="17.5" y="13" width="3" height="7.5"/></svg></button></div></header>
   <div class="search-wrap"><input type="text" id="searchInput" class="search-input" placeholder="搜索酒名或酒吧…" /><div class="search-empty micro" id="searchEmpty" hidden>没有找到匹配的记录</div></div>
   <section class="gallery" id="galleryList"></section>
   <section class="feed" id="feedList"></section>
