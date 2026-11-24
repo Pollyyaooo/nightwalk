@@ -40,10 +40,25 @@
     .drink-type{margin-top:6px;font-size:12px;color:var(--mut)}
     .card p{margin:9px 0 0;font-size:13px;line-height:1.7;color:var(--mut)}
 
-    .feed{display:none;max-width:680px;margin:36px auto 0;padding-left:30px;position:relative}
-    .feed:before{content:'';position:absolute;left:5px;top:8px;bottom:0;width:1px;background:var(--line)}
-    .feed-month{margin:40px 0 20px;font-size:13px;font-weight:600;color:var(--mut);font-variant-numeric:tabular-nums}
-    .feed-month:first-child{margin-top:0}
+    .feed{display:none;max-width:680px;margin:14px auto 0}
+    .feed-tools{display:none;max-width:680px;margin:22px auto 0;gap:10px;align-items:center;flex-wrap:wrap}
+    body.view-feed .feed-tools{display:flex}
+    .feed-tools select{flex:1;min-width:160px;padding:8px 14px;border:1.5px solid var(--fg);border-radius:999px;background:transparent;color:var(--fg);font:500 13px var(--font)}
+    .feed-tools button{padding:8px 14px;border:1.5px solid var(--fg);border-radius:999px;background:none;color:var(--fg);font:500 13px var(--font);cursor:pointer;transition:background .15s,color .15s}
+    .feed-tools button:hover{background:var(--fg);color:var(--bg)}
+    .fold>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;user-select:none}
+    .fold>summary::-webkit-details-marker{display:none}
+    .fold>summary::before{content:'';flex:0 0 auto;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s;align-self:center;margin-right:2px}
+    .fold[open]>summary::before{transform:rotate(45deg)}
+    .fcount{margin-left:auto;font-size:12px;font-weight:500;letter-spacing:0;color:var(--mut);font-variant-numeric:tabular-nums}
+    .fy{border-top:2px solid var(--fg);margin-top:18px}
+    .fy>summary{padding:16px 0 12px;font-size:30px;line-height:1.1;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+    .fm{border-top:1px solid var(--line)}
+    .fm>summary{padding:13px 0;font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+    .fw>summary{padding:8px 0 8px 20px;font-size:13px;font-weight:600;color:var(--mut);font-variant-numeric:tabular-nums}
+    .fw-body{position:relative;margin:8px 0 10px 20px;padding-left:30px}
+    .fw-body:before{content:'';position:absolute;left:5px;top:8px;bottom:0;width:1px;background:var(--line)}
+    .feed-empty{margin:24px 0;font-size:13px;color:var(--mut)}
     .feed-day{position:relative;margin:0 0 42px}
     .feed-day:before{content:'';position:absolute;left:-30px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--fg);box-shadow:0 0 0 4px var(--bg)}
     .feed-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:16px}
@@ -111,7 +126,8 @@
       .gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
       .card h2{font-size:17px}
       .footer{flex-direction:column;gap:6px}
-      .feed{padding-left:24px}
+      .fw-body{margin-left:10px;padding-left:24px}
+    .fw>summary{padding-left:10px}
       .feed-day:before{left:-24px}
       .feed-thumb{flex-basis:88px}
       .feed-entry{gap:13px}
@@ -124,8 +140,9 @@
 </head>
 <body><main class="shell">
   <header class="top"><div class="brand"><h1>Polly's Night Walk</h1></div><div class="stats"><div class="stat"><b id="drinkCount">00</b><span>COCKTAILS</span></div><div class="stat"><b id="cityCount">00</b><span>CITIES</span></div><button class="records-btn" id="viewBtn" aria-label="切换到时间线" title="切换到时间线"></button><button class="records-btn" id="recordsBtn" aria-label="按天查看" title="按天查看"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="10" width="3" height="10.5"/><rect x="10.5" y="4.5" width="3" height="16"/><rect x="17.5" y="13" width="3" height="7.5"/></svg></button></div></header>
-  <div class="search-wrap"><input type="text" id="searchInput" class="search-input" placeholder="搜索酒名或酒吧…" /><div class="search-empty micro" id="searchEmpty" hidden>没有找到匹配的记录</div></div>
+  <div class="search-wrap"><input type="text" id="searchInput" class="search-input" placeholder="搜索酒名、酒吧或月份（如 2026.07）…" /><div class="search-empty micro" id="searchEmpty" hidden>没有找到匹配的记录</div></div>
   <section class="gallery" id="galleryList"></section>
+  <div class="feed-tools" id="feedTools"><select id="monthJump" aria-label="跳到月份"></select><button type="button" id="expandAll">全部展开</button><button type="button" id="collapseAll">全部折叠</button></div>
   <section class="feed" id="feedList"></section>
   <footer class="footer"><span>DRINK SLOWLY · REMEMBER DEEPLY</span><span>YOUR PERSONAL COCKTAIL ATLAS</span></footer>
   <div class="modal" id="recordsModal"><div class="modal-backdrop" id="modalBackdrop"></div><div class="modal-box"><button class="modal-close" id="modalClose" aria-label="关闭">×</button><div class="chart-head"><button class="chart-back" id="chartBack">← 返回</button><div class="chart-title" id="chartTitle"></div></div><div class="chart-bars" id="chartBars"></div><div class="chart-daylist" id="chartDayList"></div><div class="top-bars"><div class="chart-title">常去酒吧 TOP 5</div><ol id="topBarsList"></ol></div></div></div>
@@ -423,36 +440,104 @@ function renderTopBars(){
   document.querySelector('#topBarsList').innerHTML=top.map(([bar,c],i)=>`<li><span class="rank">${i+1}</span><span class="tbname">${esc(bar)}</span><span class="tbcount">${c} 杯</span></li>`).join('');
 }
 renderTopBars();
-function renderGallery(list){
+function renderGallery(list,openAll){
   const galleryEl=document.querySelector('#galleryList'),emptyEl=document.querySelector('#searchEmpty');
   galleryEl.innerHTML=list.map(d=>`<article class="card" tabindex="0"><div class="photo ${d.size}" style="--photo:${d.color}"><img src="${esc(d.photo||'')}" alt="${esc(d.name)}" loading="lazy" decoding="async" onerror="this.remove()"></div><div class="card-text"><div class="city">${esc(d.city)} · ${esc(d.date)}</div><h2>${esc(d.name)}</h2><div class="micro">${esc(d.bar)}</div>${d.type?`<div class="drink-type">${esc(d.type)}</div>`:''}<p>${esc(d.taste)}</p></div></article>`).join('');
   emptyEl.hidden=list.length>0;
   galleryEl.hidden=list.length===0;
-  document.querySelector('#feedList').innerHTML=feedHTML(list);
+  document.querySelector('#feedList').innerHTML=feedHTML(list,openAll);
 }
 const WEEK=['周日','周一','周二','周三','周四','周五','周六'];
-function feedHTML(list){
-  const days=new Map();
-  list.forEach(d=>{if(!days.has(d.date))days.set(d.date,[]);days.get(d.date).push(d)});
-  let out='',curMonth='';
-  days.forEach((items,date)=>{
-    const[y,m,dd]=date.split('.').map(Number);
-    const ym=`${y} · ${String(m).padStart(2,'0')}`;
-    if(ym!==curMonth){out+=`<div class="feed-month">${ym}</div>`;curMonth=ym}
-    const cities=[...new Set(items.map(d=>d.city.split('，')[0]))].join(' / ');
-    const barCount=new Set(items.map(d=>d.bar)).size;
-    const meta=`${esc(cities)} · ${items.length} 杯 · ${barCount} 家`;
-    const entries=[...items].reverse().map(d=>`<article class="feed-entry"><div class="feed-thumb"><img src="${esc(d.photo||'')}" alt="${esc(d.name)}" loading="lazy" decoding="async" onerror="this.parentNode.remove()"></div><div class="feed-text"><div class="feed-name">${esc(d.name)}</div><span class="feed-bar">${esc(d.bar)}</span>${d.taste?`<p class="feed-taste">${esc(d.taste)}</p>`:''}</div></article>`).join('');
-    out+=`<div class="feed-day"><div class="feed-head"><span class="feed-date">${String(m).padStart(2,'0')}.${String(dd).padStart(2,'0')}</span><span class="feed-week">${WEEK[new Date(y,m-1,dd).getDay()]}</span><span class="feed-meta">${meta}</span></div>${entries}</div>`;
+const pad2=n=>String(n).padStart(2,'0');
+function dayHTML(date,items){
+  const[y,m,dd]=date.split('.').map(Number);
+  const cities=[...new Set(items.map(d=>d.city.split('，')[0]))].join(' / ');
+  const barCount=new Set(items.map(d=>d.bar)).size;
+  const meta=`${esc(cities)} · ${items.length} 杯 · ${barCount} 家`;
+  const entries=[...items].reverse().map(d=>`<article class="feed-entry"><div class="feed-thumb"><img src="${esc(d.photo||'')}" alt="${esc(d.name)}" loading="lazy" decoding="async" onerror="this.parentNode.remove()"></div><div class="feed-text"><div class="feed-name">${esc(d.name)}</div><span class="feed-bar">${esc(d.bar)}</span>${d.taste?`<p class="feed-taste">${esc(d.taste)}</p>`:''}</div></article>`).join('');
+  return `<div class="feed-day"><div class="feed-head"><span class="feed-date">${pad2(m)}.${pad2(dd)}</span><span class="feed-week">${WEEK[new Date(y,m-1,dd).getDay()]}</span><span class="feed-meta">${meta}</span></div>${entries}</div>`;
+}
+function feedHTML(list,openAll){
+  if(!list.length)return '';
+  // year -> month -> week(Mon-Sun) -> day -> items, all newest first
+  const years=new Map();
+  list.forEach(d=>{
+    const[y,m,dd]=d.date.split('.').map(Number);
+    const dt=new Date(y,m-1,dd),off=(dt.getDay()+6)%7;
+    const wkKey=new Date(y,m-1,dd-off).getTime();
+    if(!years.has(y))years.set(y,new Map());
+    const ms=years.get(y);if(!ms.has(m))ms.set(m,new Map());
+    const ws=ms.get(m);if(!ws.has(wkKey))ws.set(wkKey,new Map());
+    const ds=ws.get(wkKey);if(!ds.has(d.date))ds.set(d.date,[]);
+    ds.get(d.date).push(d);
+  });
+  const count=(map,depth)=>{let n=0;(function walk(x,k){if(k===0){x.forEach(v=>n+=v.length)}else x.forEach(v=>walk(v,k-1))})(map,depth);return n};
+  const days=(map,depth)=>{let n=0;(function walk(x,k){if(k===0)n+=x.size;else x.forEach(v=>walk(v,k-1))})(map,depth);return n};
+  let out='',yi=0;
+  years.forEach((ms,y)=>{
+    const yOpen=openAll||yi===0;let mi=0;
+    let yb='';
+    ms.forEach((ws,m)=>{
+      const mOpen=openAll||(yi===0&&mi===0);
+      let mb='';
+      ws.forEach((ds,wk)=>{
+        // week range (Mon-Sun), clamped to this month
+        const dim=new Date(y,m,0).getDate(),mon=new Date(wk),sun=new Date(wk);sun.setDate(sun.getDate()+6);
+        const lo=mon.getMonth()===m-1&&mon.getFullYear()===y?mon.getDate():1;
+        const hi=sun.getMonth()===m-1&&sun.getFullYear()===y?sun.getDate():dim;
+        let wb='',cnt=0;
+        ds.forEach((items,date)=>{wb+=dayHTML(date,items);cnt+=items.length});
+        mb+=`<details class="fold fw" open><summary>${pad2(m)}.${pad2(lo)} – ${pad2(m)}.${pad2(hi)}<span class="fcount">${cnt} 杯</span></summary><div class="fw-body">${wb}</div></details>`;
+      });
+      yb+=`<details class="fold fm" id="m-${y}-${pad2(m)}"${mOpen?' open':''}><summary>${pad2(m)} 月<span class="fcount">${count(ws,1)} 杯 · ${days(ws,1)} 天</span></summary>${mb}</details>`;
+      mi++;
+    });
+    out+=`<details class="fold fy" id="y-${y}"${yOpen?' open':''}><summary>${y}<span class="fcount">${count(ms,2)} 杯 · ${days(ms,2)} 天</span></summary>${yb}</details>`;
+    yi++;
   });
   return out;
+}
+function buildMonthJump(){
+  const cnt=new Map();
+  drinks.forEach(d=>{const k=d.date.slice(0,7);cnt.set(k,(cnt.get(k)||0)+1)});
+  const sel=document.querySelector('#monthJump');
+  sel.innerHTML='<option value="">跳到月份…</option>'+[...cnt].map(([k,n])=>{const[y,m]=k.split('.');return `<option value="${y}-${m}">${y} 年 ${+m} 月 · ${n} 杯</option>`}).join('');
+}
+buildMonthJump();
+// A month/year query such as "2026.07", "2026年7月", "2026-7" or "7月"
+function parseMonthQuery(q){
+  let m=q.match(/^(\d{4})\s*[.\-\/年]\s*(\d{1,2})\s*月?$/);
+  if(m)return{y:+m[1],m:+m[2]};
+  m=q.match(/^(\d{1,2})\s*月$/);
+  if(m)return{m:+m[1]};
+  m=q.match(/^(\d{4})\s*年?$/);
+  if(m&&+m[1]>=2000)return{y:+m[1]};
+  return null;
 }
 renderGallery(drinks);
 document.querySelector('#searchInput').addEventListener('input',e=>{
   const q=e.target.value.trim().toLowerCase();
   if(!q){renderGallery(drinks);return}
-  renderGallery(drinks.filter(d=>d.name.toLowerCase().includes(q)||d.bar.toLowerCase().includes(q)));
+  const mq=parseMonthQuery(q);
+  if(mq){
+    renderGallery(drinks.filter(d=>{const[y,m]=d.date.split('.').map(Number);return (mq.y==null||y===mq.y)&&(mq.m==null||m===mq.m)}),true);
+    return;
+  }
+  renderGallery(drinks.filter(d=>d.name.toLowerCase().includes(q)||d.bar.toLowerCase().includes(q)),true);
 });
+document.querySelector('#monthJump').addEventListener('change',e=>{
+  const v=e.target.value;if(!v)return;
+  const inp=document.querySelector('#searchInput');
+  if(inp.value){inp.value='';renderGallery(drinks)}
+  const[y,m]=v.split('-');
+  const yEl=document.querySelector('#y-'+y),mEl=document.querySelector('#m-'+y+'-'+m);
+  if(yEl)yEl.open=true;
+  if(mEl){mEl.open=true;mEl.scrollIntoView({behavior:'smooth',block:'start'})}
+  e.target.value='';
+});
+const setAllFolds=o=>document.querySelectorAll('#feedList details').forEach(x=>x.open=o);
+document.querySelector('#expandAll').onclick=()=>setAllFolds(true);
+document.querySelector('#collapseAll').onclick=()=>setAllFolds(false);
 const ICON_FEED='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="5" cy="18" r="1.6"/><path d="M10 6h10M10 12h10M10 18h10"/></svg>';
 const ICON_GRID='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="6.5" height="6.5"/><rect x="13.5" y="4" width="6.5" height="6.5"/><rect x="4" y="13.5" width="6.5" height="6.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5"/></svg>';
 function setView(feed){
