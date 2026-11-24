@@ -12,10 +12,10 @@
     button,input{font-family:inherit}
 
     .shell{max-width:1280px;margin:0 auto;padding:56px 56px 80px}
-    .top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;border-bottom:2px solid var(--fg);padding-bottom:22px}
+    .top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:6px}
     .brand h1{margin:0;font-size:clamp(32px,5vw,68px);line-height:1;font-weight:800;letter-spacing:-.05em}
     .stats{display:flex;align-items:center;gap:30px}
-    .stat{border-left:2px solid var(--fg);padding-left:12px}
+    .stat{padding-left:0}
     .stat b{display:block;font-size:30px;line-height:1;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
     .stat span{display:block;margin-top:6px;font-size:12px;color:var(--mut)}
     .records-btn{width:36px;height:36px;padding:0;border:1.5px solid var(--fg);background:none;color:var(--fg);border-radius:50%;display:grid;place-items:center;cursor:pointer;transition:background .15s,color .15s}
@@ -23,7 +23,7 @@
     .records-btn:hover,.records-btn.on{background:var(--fg);color:var(--bg)}
 
     .search-wrap{margin-top:28px}
-    .search-input{width:100%;padding:14px 0;border:0;border-bottom:2px solid var(--fg);border-radius:0;background:transparent;font-size:18px;color:var(--fg);outline:none}
+    .search-input{width:100%;padding:14px 0;border:0;border-radius:0;background:transparent;font-size:18px;color:var(--fg);outline:none}
     .search-input::placeholder{color:var(--mut)}
     .search-empty{margin-top:14px;font-size:13px;color:var(--mut)}
     .search-empty[hidden]{display:none}
@@ -43,7 +43,21 @@
     .feed{display:none;max-width:680px;margin:14px auto 0}
     .feed-tools{display:none;max-width:680px;margin:22px auto 0;gap:10px;align-items:center;flex-wrap:wrap}
     body.view-feed .feed-tools{display:flex}
-    .feed-tools select{flex:1;min-width:160px;padding:8px 14px;border:1.5px solid var(--fg);border-radius:999px;background:transparent;color:var(--fg);font:500 13px var(--font)}
+        .mj{position:relative;flex:1;min-width:160px}
+    .mj-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .mj-btn::after{content:'';width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+    .mj-btn[aria-expanded=true]{background:var(--fg);color:var(--bg)}
+    .mj-btn[aria-expanded=true]::after{transform:rotate(-135deg) translateY(-2px)}
+    .mj-panel{position:absolute;z-index:30;top:calc(100% + 8px);left:0;width:min(440px,calc(100vw - 40px));max-height:min(60vh,460px);overflow-y:auto;padding:6px 18px 14px;border:1.5px solid var(--fg);border-radius:12px;background:var(--bg);box-shadow:0 12px 32px rgba(20,20,20,.14)}
+    .mj-panel[hidden]{display:none}
+    .mj-year{padding-top:12px}
+    .mj-ytitle{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;font-size:15px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+    .mj-ytitle span{font-size:11px;font-weight:500;letter-spacing:0;color:var(--mut)}
+    .mj-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+    .mj-chip{padding:7px 0 6px;border:1px solid var(--fg);border-radius:8px;background:none;color:var(--fg);font:600 13px/1.1 var(--font);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:background .12s,color .12s}
+    .mj-chip i{font-style:normal;font-size:10px;font-weight:500;opacity:.6}
+    .mj-chip:hover:not(:disabled){background:var(--fg);color:var(--bg)}
+    .mj-chip:disabled{border-color:var(--line);color:rgba(20,20,20,.28);cursor:default}
     .feed-tools button{padding:8px 14px;border:1.5px solid var(--fg);border-radius:999px;background:none;color:var(--fg);font:500 13px var(--font);cursor:pointer;transition:background .15s,color .15s}
     .feed-tools button:hover{background:var(--fg);color:var(--bg)}
     .fold>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;user-select:none}
@@ -51,11 +65,12 @@
     .fold>summary::before{content:'';flex:0 0 auto;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s;align-self:center;margin-right:2px}
     .fold[open]>summary::before{transform:rotate(45deg)}
     .fcount{margin-left:auto;font-size:12px;font-weight:500;letter-spacing:0;color:var(--mut);font-variant-numeric:tabular-nums}
-    .fy{border-top:2px solid var(--fg);margin-top:18px}
+    .fc-item{display:inline-flex;align-items:center;gap:4px;margin-left:14px}
+    .fc-item svg{flex:0 0 auto;opacity:.75}
+    .fy{margin-top:26px}
     .fy>summary{padding:16px 0 12px;font-size:30px;line-height:1.1;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-    .fm{border-top:1px solid var(--line)}
-    .fm>summary{padding:13px 0;font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
-    .fw>summary{padding:8px 0 8px 20px;font-size:13px;font-weight:600;color:var(--mut);font-variant-numeric:tabular-nums}
+        .fm>summary{padding:13px 0;font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+    .fw>summary{padding:9px 0 9px 20px;font-size:16px;font-weight:600;color:var(--fg);font-variant-numeric:tabular-nums}
     .fw-body{position:relative;margin:8px 0 10px 20px;padding-left:30px}
     .fw-body:before{content:'';position:absolute;left:5px;top:8px;bottom:0;width:1px;background:var(--line)}
     .feed-empty{margin:24px 0;font-size:13px;color:var(--mut)}
@@ -75,8 +90,11 @@
     body.view-feed .gallery{display:none}
     body.view-feed .feed{display:block}
 
-    .footer{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:16px;border-top:2px solid var(--fg);font-size:11px;letter-spacing:.04em;color:var(--mut)}
+    .footer{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:16px;font-size:11px;letter-spacing:.04em;color:var(--mut)}
 
+    .to-top{position:fixed;right:20px;bottom:24px;z-index:40;width:44px;height:44px;padding:0;border:1.5px solid var(--fg);border-radius:50%;background:var(--bg);color:var(--fg);display:grid;place-items:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s,background .15s,color .15s}
+    .to-top.show{opacity:1;visibility:visible;transform:none}
+    .to-top:hover{background:var(--fg);color:var(--bg)}
     .modal{display:none;position:fixed;inset:0;z-index:50}
     .modal.active{display:block}
     .modal-backdrop{position:absolute;inset:0;background:rgba(20,20,20,.5)}
@@ -96,7 +114,7 @@
     .bar-label{margin-top:6px;font-size:10px;color:var(--mut);white-space:nowrap}
     .chart-daylist{margin-top:28px}
     .day-block{margin:0 0 24px}
-    .day-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:16px 0 10px;border-top:1px solid var(--line)}
+    .day-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:16px 0 10px}
     .day-head .date{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}
     .day-head .day-cities{font-size:12px;color:var(--mut)}
     .day-items{display:flex;flex-direction:column;gap:12px}
@@ -104,7 +122,7 @@
     .day-item .name{font-size:18px;font-weight:700;letter-spacing:-.01em}
     .day-item .bar{margin-left:8px;font-size:13px;font-weight:500;color:var(--soft)}
     .day-item p{margin:4px 0 0;font-size:13px;line-height:1.65;color:var(--mut)}
-    .top-bars{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+    .top-bars{margin-top:32px;padding-top:24px}
     .top-bars .chart-title{margin-bottom:14px}
     .top-bars ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
     .top-bars li{display:flex;align-items:baseline;gap:12px}
@@ -131,6 +149,7 @@
       .feed-day:before{left:-24px}
       .feed-thumb{flex-basis:88px}
       .feed-entry{gap:13px}
+      .to-top{right:14px;bottom:18px}
       .modal-box{margin:20px 12px;padding:24px 18px 28px;max-height:calc(100vh - 40px)}
       .chart-bars{height:180px;gap:3px}
       .bar-val{font-size:9px}
@@ -142,8 +161,9 @@
   <header class="top"><div class="brand"><h1>Polly's Night Walk</h1></div><div class="stats"><div class="stat"><b id="drinkCount">00</b><span>COCKTAILS</span></div><div class="stat"><b id="cityCount">00</b><span>CITIES</span></div><button class="records-btn" id="viewBtn" aria-label="切换到时间线" title="切换到时间线"></button><button class="records-btn" id="recordsBtn" aria-label="按天查看" title="按天查看"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="10" width="3" height="10.5"/><rect x="10.5" y="4.5" width="3" height="16"/><rect x="17.5" y="13" width="3" height="7.5"/></svg></button></div></header>
   <div class="search-wrap"><input type="text" id="searchInput" class="search-input" placeholder="搜索酒名、酒吧或月份（如 2026.07）…" /><div class="search-empty micro" id="searchEmpty" hidden>没有找到匹配的记录</div></div>
   <section class="gallery" id="galleryList"></section>
-  <div class="feed-tools" id="feedTools"><select id="monthJump" aria-label="跳到月份"></select><button type="button" id="expandAll">全部展开</button><button type="button" id="collapseAll">全部折叠</button></div>
+  <div class="feed-tools" id="feedTools"><div class="mj"><button type="button" class="mj-btn" id="monthBtn" aria-expanded="false" aria-haspopup="true">跳到月份</button><div class="mj-panel" id="monthPanel" hidden></div></div><button type="button" id="expandAll">全部展开</button><button type="button" id="collapseAll">全部折叠</button></div>
   <section class="feed" id="feedList"></section>
+  <button type="button" class="to-top" id="toTop" aria-label="回到顶部" title="回到顶部"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
   <footer class="footer"><span>DRINK SLOWLY · REMEMBER DEEPLY</span><span>YOUR PERSONAL COCKTAIL ATLAS</span></footer>
   <div class="modal" id="recordsModal"><div class="modal-backdrop" id="modalBackdrop"></div><div class="modal-box"><button class="modal-close" id="modalClose" aria-label="关闭">×</button><div class="chart-head"><button class="chart-back" id="chartBack">← 返回</button><div class="chart-title" id="chartTitle"></div></div><div class="chart-bars" id="chartBars"></div><div class="chart-daylist" id="chartDayList"></div><div class="top-bars"><div class="chart-title">常去酒吧 TOP 5</div><ol id="topBarsList"></ol></div></div></div>
 </main>
@@ -449,6 +469,10 @@ function renderGallery(list,openAll){
 }
 const WEEK=['周日','周一','周二','周三','周四','周五','周六'];
 const pad2=n=>String(n).padStart(2,'0');
+const IC_CUP='<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" fill-opacity=".16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 6.5h14l-6.1 7.3a1.15 1.15 0 0 1-1.8 0z"/><path d="M12 14.6V19.5M8.6 19.5h6.8" fill="none"/><circle cx="14.6" cy="3.6" r="1" fill="currentColor" stroke="none"/></svg>';
+const IC_DAY='<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" fill-opacity=".16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 14.6A8 8 0 1 1 9.4 4.5a6.4 6.4 0 0 0 10.1 10.1z"/><circle cx="17.6" cy="5.6" r=".9" fill="currentColor" stroke="none"/></svg>';
+const cupTag=n=>`<span class="fc-item" title="${n} 杯">${IC_CUP}${n}</span>`;
+const dayTag=n=>`<span class="fc-item" title="${n} 天">${IC_DAY}${n}</span>`;
 function dayHTML(date,items){
   const[y,m,dd]=date.split('.').map(Number);
   const cities=[...new Set(items.map(d=>d.city.split('，')[0]))].join(' / ');
@@ -487,12 +511,12 @@ function feedHTML(list,openAll){
         const hi=sun.getMonth()===m-1&&sun.getFullYear()===y?sun.getDate():dim;
         let wb='',cnt=0;
         ds.forEach((items,date)=>{wb+=dayHTML(date,items);cnt+=items.length});
-        mb+=`<details class="fold fw" open><summary>${pad2(m)}.${pad2(lo)} – ${pad2(m)}.${pad2(hi)}<span class="fcount">${cnt} 杯</span></summary><div class="fw-body">${wb}</div></details>`;
+        mb+=`<details class="fold fw" open><summary>${pad2(m)}.${pad2(lo)} – ${pad2(m)}.${pad2(hi)}<span class="fcount">${cupTag(cnt)}</span></summary><div class="fw-body">${wb}</div></details>`;
       });
-      yb+=`<details class="fold fm" id="m-${y}-${pad2(m)}"${mOpen?' open':''}><summary>${pad2(m)} 月<span class="fcount">${count(ws,1)} 杯 · ${days(ws,1)} 天</span></summary>${mb}</details>`;
+      yb+=`<details class="fold fm" id="m-${y}-${pad2(m)}"${mOpen?' open':''}><summary>${pad2(m)} 月<span class="fcount">${cupTag(count(ws,1))}${dayTag(days(ws,1))}</span></summary>${mb}</details>`;
       mi++;
     });
-    out+=`<details class="fold fy" id="y-${y}"${yOpen?' open':''}><summary>${y}<span class="fcount">${count(ms,2)} 杯 · ${days(ms,2)} 天</span></summary>${yb}</details>`;
+    out+=`<details class="fold fy" id="y-${y}"${yOpen?' open':''}><summary>${y}<span class="fcount">${cupTag(count(ms,2))}${dayTag(days(ms,2))}</span></summary>${yb}</details>`;
     yi++;
   });
   return out;
@@ -500,8 +524,16 @@ function feedHTML(list,openAll){
 function buildMonthJump(){
   const cnt=new Map();
   drinks.forEach(d=>{const k=d.date.slice(0,7);cnt.set(k,(cnt.get(k)||0)+1)});
-  const sel=document.querySelector('#monthJump');
-  sel.innerHTML='<option value="">跳到月份…</option>'+[...cnt].map(([k,n])=>{const[y,m]=k.split('.');return `<option value="${y}-${m}">${y} 年 ${+m} 月 · ${n} 杯</option>`}).join('');
+  const years=[...new Set(drinks.map(d=>+d.date.slice(0,4)))].sort((a,b)=>b-a);
+  document.querySelector('#monthPanel').innerHTML=years.map(y=>{
+    const total=[...cnt].filter(([k])=>k.startsWith(y+'.')).reduce((n,[,c])=>n+c,0);
+    const chips=Array.from({length:12},(_,i)=>{
+      const m=i+1,c=cnt.get(y+'.'+pad2(m))||0;
+      return c?`<button type="button" class="mj-chip" data-y="${y}" data-m="${pad2(m)}" title="${y} 年 ${m} 月 · ${c} 杯">${m}月<i>${c}</i></button>`
+              :`<button type="button" class="mj-chip" disabled>${m}月<i>·</i></button>`;
+    }).join('');
+    return `<div class="mj-year"><div class="mj-ytitle">${y}<span>${total} 杯</span></div><div class="mj-grid">${chips}</div></div>`;
+  }).join('');
 }
 buildMonthJump();
 // A month/year query such as "2026.07", "2026年7月", "2026-7" or "7月"
@@ -525,19 +557,29 @@ document.querySelector('#searchInput').addEventListener('input',e=>{
   }
   renderGallery(drinks.filter(d=>d.name.toLowerCase().includes(q)||d.bar.toLowerCase().includes(q)),true);
 });
-document.querySelector('#monthJump').addEventListener('change',e=>{
-  const v=e.target.value;if(!v)return;
+const monthBtn=document.querySelector('#monthBtn'),monthPanel=document.querySelector('#monthPanel');
+function toggleMonthPanel(open){
+  monthPanel.hidden=!open;monthBtn.setAttribute('aria-expanded',open?'true':'false');
+}
+monthBtn.onclick=e=>{e.stopPropagation();toggleMonthPanel(monthPanel.hidden)};
+document.addEventListener('click',e=>{if(!monthPanel.hidden&&!e.target.closest('.mj'))toggleMonthPanel(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!monthPanel.hidden)toggleMonthPanel(false)});
+monthPanel.addEventListener('click',e=>{
+  const c=e.target.closest('.mj-chip');if(!c||c.disabled)return;
   const inp=document.querySelector('#searchInput');
   if(inp.value){inp.value='';renderGallery(drinks)}
-  const[y,m]=v.split('-');
+  const y=c.dataset.y,m=c.dataset.m;
   const yEl=document.querySelector('#y-'+y),mEl=document.querySelector('#m-'+y+'-'+m);
   if(yEl)yEl.open=true;
   if(mEl){mEl.open=true;mEl.scrollIntoView({behavior:'smooth',block:'start'})}
-  e.target.value='';
+  toggleMonthPanel(false);
 });
 const setAllFolds=o=>document.querySelectorAll('#feedList details').forEach(x=>x.open=o);
 document.querySelector('#expandAll').onclick=()=>setAllFolds(true);
 document.querySelector('#collapseAll').onclick=()=>setAllFolds(false);
+const toTopBtn=document.querySelector('#toTop');
+window.addEventListener('scroll',()=>toTopBtn.classList.toggle('show',window.scrollY>500),{passive:true});
+toTopBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
 const ICON_FEED='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5" cy="6" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="5" cy="18" r="1.6"/><path d="M10 6h10M10 12h10M10 18h10"/></svg>';
 const ICON_GRID='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="6.5" height="6.5"/><rect x="13.5" y="4" width="6.5" height="6.5"/><rect x="4" y="13.5" width="6.5" height="6.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5"/></svg>';
 function setView(feed){
